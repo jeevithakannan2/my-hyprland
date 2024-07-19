@@ -1,8 +1,15 @@
 DOT_LOCATION=~/hypr-jeeva
 
 install_deps() {
-  sudo pacman -Syu
-  sudo pacman -S hyprland waybar hyprlock hyprindle --needed
+  if command -v paru &>/dev/null; then
+    paru
+    paru -S hyprland waybar hyprlock hypridle wlogout wttrbar waybar-module-pacman-updates-git --needed
+  else
+    git clone https://aur.archlinux.org/paru.git
+    cd paru
+    makepkg -si --noconfirm
+    install_deps
+  fi
 }
 
 git_clone() {
