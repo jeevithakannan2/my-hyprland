@@ -1,11 +1,13 @@
-DOT_LOCATION=~/hypr-jeeva
+#!/bin/bash
+
+DOT_LOCATION="$HOME/hypr-jeeva"
 
 install_deps() {
   if command -v paru &>/dev/null; then
     paru
-    paru -S hyprland waybar hyprlock hyprshot hypridle wlogout wttrbar waybar-module-pacman-updates-git --needed --no-confirm
+    paru -S hyprland waybar hyprpaper hyprlock hyprshot hypridle wlogout wttrbar waybar-module-pacman-updates-git --needed --noconfirm
   else
-    git clone https://aur.archlinux.org/paru.git
+    git clone https://aur.archlinux.org/paru-bin.git
     cd paru
     makepkg -si --noconfirm
     install_deps
