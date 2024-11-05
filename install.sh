@@ -1,17 +1,15 @@
-#!/bin/bash
+#!/bin/bash -e
 
 DOT_LOCATION="$HOME/hypr-jeeva"
 
 install_deps() {
-  if command -v paru &>/dev/null; then
-    paru
-    paru -S hyprland waybar hyprpaper hyprlock hyprshot hypridle wlogout wttrbar waybar-module-pacman-updates-git --needed --noconfirm
-  else
+  if ! command -v paru &>/dev/null; then
     git clone https://aur.archlinux.org/paru-bin.git
-    cd paru
+    cd paru-bin
     makepkg -si --noconfirm
-    install_deps
   fi
+  paru
+  paru -S hyprland xdg-desktop-portal-hyprland waybar hyprpaper hyprlock hyprshot hypridle wlogout wttrbar waybar-module-pacman-updates-git foot mate-polkit wofi --needed --noconfirm
 }
 
 git_clone() {
@@ -30,8 +28,8 @@ git_clone() {
 }
 
 copy_configs() {
-  cd "$DOT_LOCATION"
-  cp -rf config/* ~/.config/
+  mkdir -p "$HOME/.config"
+  cp -rf "$DOT_LOCATION/config/"* "$HOME/.config"
 }
 
 if command -v pacman &>/dev/null; then
