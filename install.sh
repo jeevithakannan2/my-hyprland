@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-DOT_LOCATION="$HOME/hypr-jeeva"
+DOT_LOCATION="$HOME/hyprland-dots"
 
 install_deps() {
   if ! command -v paru &>/dev/null; then
@@ -23,7 +23,7 @@ git_clone() {
       exit 1
     fi
   else
-    git clone https://github.com/jeevithakannan2/hyprland.git --depth 1 "$DOT_LOCATION"
+    git clone https://github.com/jeevithakannan2/hyprland-dots.git --depth 1 "$DOT_LOCATION"
   fi
 }
 
